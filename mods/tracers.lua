@@ -5,11 +5,7 @@ local modType = enums.modType
 
 local perips = require("libs/perip")
 
-local handle = perips.canvas3d()
-local canvas = handle.create()
-
-local setPosition = canvas.setPosition
-local addLine = canvas.addLine
+local createCanvas = perips.canvas3d().create
 local sense = perips.sense
 
 local trueLen = require("libs/utils").trueLen
@@ -18,36 +14,35 @@ local playerId = perips.getMetaOwner().id
 
 local relative = { 0, -0.5, 0 }
 local lineColour = require("data/theme").palette.tracers
-local lines = { }
 
-local function clearLines()
-    for _, remove in pairs(lines) do
-        remove()
-    end
-
-    lines = { }
-end
+local removeCanvas
 
 mod.new("tracers", "trace foes down!", modType.passive, true)
     :setTickCallback(function(self) 
         if not self:isEnabled() then
-            if trueLen(lines) ~= 0 then
-                clearLines()
+            if removeCanvas then
+                removeCanvas()
             end
 
             return
         end
 
-        clearLines()
-        setPosition(relative)
+        if removeCanvas then
+            removeCanvas()
+        end
         
+        local canvas = createCanvas(relative)
+        removeCanvas = canvas.remove()
+        
+        local addLine = canvas.addLine
+
         local nearby = sense()
 
         for i = 1, #nearby do
             local entity = nearby[i]
 
             if entity.id ~= playerId then
-                lines[#lines + 1] = addLine(relative, { entity.x, entity.y, entity.z }, 3, lineColour).remove
+                addLine(relative, { entity.x, entity.y, entity.z }, 3, lineColour)
             end
         end
     end)

@@ -27,31 +27,25 @@ print(format("$ loaded fully in %fs", os.clock() - start))
 local processInput = require("libs/input").processInput
 local loadedMods = require("libs/registry"):getMods()
 local sleep, tick = sleep, flags.tick
-local pullEvent, create, resume = os.pullEvent, coroutine.create, coroutine.resume
+local pullEvent = os.pullEvent
+local waitForAny = parallel.waitForAny
 
-local loops = {}
-loops.doTick = create(function()
-    while true do
-        for i = 1, #loadedMods do
-            local mod = loadedMods[i]
+local function doTick()
+    for i = 1, #loadedMods do
+        local mod = loadedMods[i]
 
-            if mod:doesTick() then
-                mod:tick()
-            end
+        if mod:doesTick() then
+            mod:tick()
         end
-
-        sleep(tick)
     end
-end)
 
-loops.inputListener = create(function()
-    while true do 
-        processInput(pullEvent("key"))
-    end
-end)
+    sleep(tick)
+end
+
+local function inputListener()
+    processInput(pullEvent("key"))
+end
 
 while true do
-    for i = 1, #loops do
-        resume(loops[i])
-    end
+    waitForAny(doTick, inputListener)
 end

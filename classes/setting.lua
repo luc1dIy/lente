@@ -1,4 +1,9 @@
 local setting = { }
+setting._node = nil
+setting._default = nil
+setting._value = nil
+setting._allowed = nil
+
 setting.__index = setting
 
 local settings = require("libs/settings.lua")

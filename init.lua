@@ -1,15 +1,23 @@
-local order = require("data/flags").order
+local flags = require("data/flags")
+local order, mods = flags.order, flags.mods
 
 local format = string.format
-local stageFormat = format("> stage %%i/%i", #order)
+local libraryFormat = format("> library %%i/%i", #order)
+local modFormat = format("> mod %%1/%i", #mods)
 
-print("$ loading...")
+print("$ pre-loading a few libraries...")
 local start = os.clock()
 
 for i = 1, #order do
-    local module = order[i]
-    print(format(stageFormat, i))
-    require(module)
+    require(order[i])
+    print(format(libraryFormat, i))
 end
 
-print(format("$ loaded in %fs", os.clock() - start))
+print("$ loading mods...")
+
+for i = 1, #mods do
+    require(mods[i])
+    print(format(modFormat, i))
+end
+
+print(format("$ loaded fully in %fs", os.clock() - start))

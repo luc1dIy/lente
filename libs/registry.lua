@@ -1,6 +1,5 @@
 local registry = { }
 registry._mods = { }
-registry._categories = { }
 
 local toLoad = require("data/flags").mods
 
@@ -18,8 +17,7 @@ function registry:getModByName(name)
     end
 end
 
-for _, path in pairs(toLoad) do
-    local mod = require(path)
+function registry:registerMod(mod)
     self._mods[#self._mods + 1] = mod
 end
 

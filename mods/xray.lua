@@ -1,11 +1,11 @@
-local mod, setting = require("../classes/mod.lua"), require("../classes/setting.lua")
+local mod, setting = require("classes/mod.lua"), require("classes/setting.lua")
 
-local enums = require("../data/enums.lua")
+local enums = require("data/enums.lua")
 local category, modType = enums.category, enums.modType
 
-local scan = require("../libs/perip.lua").scan
+local scan = require("libs/perip.lua").scan
 
-local blocks = require("../data/theme.lua").palette.blocks
+local blocks = require("data/theme.lua").palette.blocks
 
 local scanNode = "mods.visual.scan."
 local maxCacheSize = setting.new(scanNode .. "maxCacheSize", 100)

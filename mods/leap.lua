@@ -1,9 +1,9 @@
-local mod, setting = require("../classes/mod.lua"), require("../classes/setting.lua")
+local mod, setting = require("classes/mod.lua"), require("classes/setting.lua")
 
-local enums = require("../data/enums.lua")
+local enums = require("data/enums.lua")
 local category, modType = enums.category, enums.modType
 
-local launch = require("../libs/perip.lua").launch
+local launch = require("libs/perip.lua").launch
 
 local leapPowerNode = "mods.movement.leap.power"
 local leapPowerX = setting.new(leapPowerNode .. "X", 0.0)

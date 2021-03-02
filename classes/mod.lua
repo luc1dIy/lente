@@ -1,7 +1,7 @@
 local mod = { }
 mod.__index = mod
 
-local modType = require("../data/enums.lua").modType
+local modType = require("data/enums.lua").modType
 
 function mod.new(name, desc, category, modType)
     local instance = setmetatable({ }, mod)

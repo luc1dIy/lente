@@ -1,4 +1,4 @@
-local order = require("../data/flags.lua").order
+local order = require("data/flags.lua").order
 
 local format = string.format
 local stageFormat = format("> stage %%i/%i: %%s", #LOAD_FIRST)

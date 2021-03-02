@@ -1,10 +1,4 @@
-local json = require("json")
-local fs = io
-fs.exists = require("fs").existsSync
-local textutils = { serialiseJSON = json.encode, unserialiseJSON = json.decode }
---
-
-local configPath = require("data/flags.lua").configPath
+local configPath = require("../data/flags.lua").configPath
 
 local settings = { }
 settings._registered = { }

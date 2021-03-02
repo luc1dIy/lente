@@ -6,7 +6,7 @@ setting._allowed = nil
 
 setting.__index = setting
 
-local settings = require("libs/settings.lua")
+local settings = require("../libs/settings.lua")
 
 local assert, type = assert, type
 local format = string.format

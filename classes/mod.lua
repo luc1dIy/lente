@@ -6,10 +6,10 @@ mod._enabled = nil
 
 mod.__index = mod
 
-local registry = require("libs/registry.lua")
-local hud = require("libs/hud.lua")
+local registry = require("../libs/registry.lua")
+local hud = require("../libs/hud.lua")
 
-local modType = require("data/enums.lua").modType
+local modType = require("../data/enums.lua").modType
 
 function mod.new(name, desc, modType)
     local instance = setmetatable({ }, mod)

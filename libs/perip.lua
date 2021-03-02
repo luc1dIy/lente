@@ -1,4 +1,4 @@
-local flags = require("data/flags.lua")
+local flags = require("../data/flags.lua")
 
 local requirements = flags.requirements
 

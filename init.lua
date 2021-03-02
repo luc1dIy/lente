@@ -1,14 +1,14 @@
 local order = require("data/flags.lua").order
 
 local format = string.format
-local stageFormat = format("> stage %%i/%i: %%s", #order)
+local stageFormat = format("> stage %%i/%i", #order)
 
 print("$ loading...")
 local start = os.clock()
 
 for i = 1, #order do
     local module = order[i]
-    print(format(stageFormat, i, module))
+    print(format(stageFormat, i))
     require(module)
 end
 

@@ -27,8 +27,9 @@ print(format("$ loaded fully in %fs", os.clock() - start))
 local processInput = require("libs/input").processInput
 local loadedMods = require("libs/registry"):getMods()
 local sleep, tick = sleep, flags.tick
+
+local waitForAll = parallel.waitForAll
 local pullEvent = os.pullEvent
-local waitForAny = parallel.waitForAny
 
 local function doTick()
     for i = 1, #loadedMods do
@@ -38,8 +39,6 @@ local function doTick()
             mod:tick()
         end
     end
-
-    sleep(tick)
 end
 
 local function inputListener()
@@ -47,5 +46,5 @@ local function inputListener()
 end
 
 while true do
-    waitForAny(doTick, inputListener)
+    waitForAll(doTick, inputListener)
 end

@@ -14,7 +14,9 @@ local sense = perips.sense
 
 local trueLen = require("libs/utils").trueLen
 
-local playerId = perips.getMetaOwner().id
+local getMetaOwner = perips.getMetaOwner
+local playerId = getMetaOwner().id
+local motionYStill = -0.078400001525879
 
 local relative = { 0, -0.5, 0 }
 local lineColour = require("data/theme").palette.tracers
@@ -37,8 +39,9 @@ local function cleanLines(sensed)
 end
 
 mod.new("tracers", "trace foes down!", modType.passive, true)
-    :setTickCallback(function(self) 
-        if not self:isEnabled() then
+    :setTickCallback(function(self)
+        local player = getMetaOwner()
+        if not self:isEnabled() or (player.motionX == 0 and (player.motionY == motionYStill or player.motionY == 0) and player.motionZ == 0) then
             if trueLen(lines) ~= 0 then
                 clearLines()
             end

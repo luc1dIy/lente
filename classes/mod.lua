@@ -7,7 +7,6 @@ mod._enabled = nil
 mod.__index = mod
 
 local registry = require("libs/registry")
-local hud = require("libs/hud")
 
 local modType = require("data/enums").modType
 

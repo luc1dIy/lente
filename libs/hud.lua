@@ -6,7 +6,6 @@ hud._current = nil
 
 hud._canvas.clear()
 
-local registry = require("libs/registry")
 local input = require("libs/input")
 
 local setting = require("classes/setting")
@@ -19,13 +18,13 @@ local textColour, enabledColour, cursorColour = palette.text, palette.enabled, p
 local enums = require("data/enums")
 local modType = enums.modType
 
-local trueLen = require("utils").trueLen
+local trueLen = require("libs/utils").trueLen
 local select = select
 
-local cursor = hud._canvas.addRectangle({ x = offset.x - 2, y = offset.y }, 1, 5, cursorColour)
+local cursor = hud._canvas.addRectangle(offset.x - 2, offset.y, 1, 5, cursorColour)
 
 function hud:addMod(mod)
-    local text = self._canvas.addText({ x = offset.x, y = (trueLen(self._objects) + 1) * offset.y }, mod:getName(), textColour, size)
+    local text = self._canvas.addText(offset.x, (trueLen(self._objects) + 1) * offset.y, mod:getName(), textColour, size)
     text.setShadow(true)
 
     self._objects[mod] = text
@@ -67,8 +66,8 @@ function hud._runCursor()
     hud._modMap[hud._current]:run()
 end
 
-input:registerKey(setting.new("hud.scrollUp", key.pageUp):getValue(), true, hud._scrollUp)
-input:registerKey(setting.new("hud.scrollDown", key.pageDown):getValue(), true, hud._scrollDown)
-input:registerKey(setting.new("hud.runCursor", key.grave):getValue(), true, hud._runCursor)
+input:registerKey(setting.new("hud.scrollUp", keys.pageUp):getValue(), true, hud._scrollUp)
+input:registerKey(setting.new("hud.scrollDown", keys.pageDown):getValue(), true, hud._scrollDown)
+input:registerKey(setting.new("hud.runCursor", keys.grave):getValue(), true, hud._runCursor)
 
 return hud

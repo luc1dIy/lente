@@ -35,6 +35,12 @@ function settings:load()
         return
     end
 
+    if not handle then
+        print("! no config file found -- defaulting...")
+        self:save()
+        return
+    end
+
     local ok, contents = pcall(handle.readAll, handle)
 
     if not ok then
@@ -42,15 +48,9 @@ function settings:load()
         return
     end
 
-    if not contents then
-        print("! no config file found -- defaulting...")
-        self:save()
-        return
-    end
-
     local ok, parsed = pcall(fromJSON, contents)
     
-    if not ok then
+    if not ok or not parsed then
         print("! config file corrupted -- defaulting...")
         self:save()
     else

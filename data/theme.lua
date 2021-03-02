@@ -1,5 +1,5 @@
 return {
-    size = 1.5,
+    size = 0.75,
     offset = {
         x = 10,
         y = 10

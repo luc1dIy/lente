@@ -3,7 +3,7 @@ local order, mods = flags.order, flags.mods
 
 local format = string.format
 local libraryFormat = format("> library %%i/%i", #order)
-local modFormat = format("> mod %%1/%i", #mods)
+local modFormat = format("> mod %%i/%i", #mods)
 
 print("$ pre-loading a few libraries...")
 local start = os.clock()
@@ -21,3 +21,10 @@ for i = 1, #mods do
 end
 
 print(format("$ loaded fully in %fs", os.clock() - start))
+
+local input = require("libs/input")
+
+while true do
+    -- TODO some other event loops, probably.
+    input:listen()
+end

@@ -2,7 +2,7 @@ local registry = { }
 registry._mods = { }
 registry._categories = { }
 
-local toLoad = require("../data/flags.lua").mods
+local toLoad = require("data/flags").mods
 
 function registry:getMods()
     return self._mods

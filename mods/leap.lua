@@ -1,9 +1,9 @@
-local mod, setting = require("../classes/mod.lua"), require("../classes/setting.lua")
+local mod, setting = require("classes/mod.lua"), require("classes/setting.lua")
 
-local enums = require("../data/enums.lua")
+local enums = require("data/enums.lua")
 local modType = enums.modType
 
-local perips = require("../libs/perip.lua")
+local perips = require("libs/perip.lua")
 local getMetaOwner, launch = perips.getMetaOwner, perips.launch
 
 local power = setting.new("mods.movement.leap.power", 2.5)

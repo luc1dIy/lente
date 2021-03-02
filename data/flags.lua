@@ -4,5 +4,5 @@ return {
     side = "back",
     configPath = "config.json",
     tick = 0.05, -- one tick in seconds
-    mods = { "mods/leap" }
+    mods = { "mods/leap", "mods/tracers", "mods/config" }
 }

@@ -53,14 +53,14 @@ function hud:updateCursor()
 end
 
 function hud._scrollUp()
-    local nextIndex = hud._current + 1
-    hud._current = nextIndex > trueLen(hud._objects) and 1 or nextIndex
+    local previousIndex = hud._current - 1
+    hud._current = previousIndex < 1 and trueLen(hud._objects) or previousIndex
     hud:updateCursor()
 end
 
 function hud._scrollDown()
-    local previousIndex = hud._current - 1
-    hud._current = previousIndex < 1 and trueLen(hud._objects) or previousIndex
+    local nextIndex = hud._current + 1
+    hud._current = nextIndex > trueLen(hud._objects) and 1 or nextIndex
     hud:updateCursor()
 end
 

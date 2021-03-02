@@ -24,11 +24,13 @@ end
 
 print(format("$ loaded fully in %fs", os.clock() - start))
 
-local input = require("libs/input")
+local processInput = require("libs/input").processInput
 local loadedMods = require("libs/registry"):getMods()
 local sleep, tick = sleep, flags.tick
+local pullEvent, create, resume = os.pullEvent, coroutine.create, coroutine.resume
 
-local function doTick()
+local loops = {}
+loops.doTick = create(function()
     while true do
         for i = 1, #loadedMods do
             local mod = loadedMods[i]
@@ -40,7 +42,16 @@ local function doTick()
 
         sleep(tick)
     end
-end
+end)
 
-coroutine.wrap(doTick)()
-input.listen()
+loops.inputListener = create(function()
+    while true do 
+        processInput(pullEvent("key"))
+    end
+end)
+
+while true do
+    for i = 1, #loops do
+        resume(loops[i])
+    end
+end

@@ -8,7 +8,8 @@ return {
     palette = {
         text = 0xFFFFFFFF,
         enabled = 0xbeed69ff,
-        cursor = 0xc0eae9ff
+        cursor = 0xc0eae9ff,
+        tracers = 0xb4494940
         --[[
         blocks = { 
             ["minecraft:lava"] = { priority = 6, colour = { 150, 75, 0 } },

@@ -25,7 +25,7 @@ end
 print(format("$ loaded fully in %fs", os.clock() - start))
 
 local loadedMods = require("libs/registry"):getMods()
-local modType, tick = require("libs/enums.lua"), flags.tick
+local modType, tick = require("libs/enums"), flags.tick
 local sleep = sleep
 
 while true do

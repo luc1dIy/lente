@@ -5,6 +5,8 @@ local format = string.format
 local libraryFormat = format("> library %%i/%i", #order)
 local modFormat = format("> mod %%i/%i", #mods)
 
+local wrap = coroutine.wrap
+
 print("$ pre-loading a few libraries...")
 local start = os.clock()
 
@@ -22,9 +24,18 @@ end
 
 print(format("$ loaded fully in %fs", os.clock() - start))
 
-local input = require("libs/input")
+local loadedMods = require("libs/registry"):getMods()
+local modType, tick = require("libs/enums.lua"), flags.tick
+local sleep = sleep
 
 while true do
-    -- TODO some other event loops, probably.
-    input:listen()
+    for i = 1, #loadedMods do
+        local mod = loadedMods[i]
+
+        if mod:doesTick() then
+            mod:tick()
+        end
+    end
+
+    sleep(tick)
 end

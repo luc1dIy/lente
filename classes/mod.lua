@@ -10,11 +10,12 @@ local registry = require("libs/registry")
 
 local modType = require("data/enums").modType
 
-function mod.new(name, desc, modType)
+function mod.new(name, desc, modType, ticks)
     local instance = setmetatable({ }, mod)
     instance._name = name
     instance._desc = desc
     instance._modType = modType
+    instance._ticks = ticks
     instance._enabled = false
 
     registry:registerMod(instance)
@@ -37,17 +38,30 @@ function mod:isEnabled()
     return self._enabled
 end
 
+function mod:doesTick()
+    return self._ticks
+end
+
 function mod:setCallback(callback) 
     self._callback = callback
 end
 
-function mod:run(...)
+function mod:setTickCallback(callback)
+    self._tickCallback = callback
+end
+
+function mod:run()
     if self._modType == modType.passive then
         self._enabled = not self._enabled
         hud:updateMod(self)
+        return
     end
 
-    self._callback(...)
+    self._callback()
+end
+
+function mod:tick()
+    self._tickCallback()
 end
 
 return mod

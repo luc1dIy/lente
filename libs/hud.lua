@@ -6,8 +6,8 @@ hud._current = nil
 
 hud._canvas.clear()
 
-local registry = require("registry")
-local input = require("input")
+local registry = require("libs/registry")
+local input = require("libs/input")
 
 local setting = require("classes/setting")
 

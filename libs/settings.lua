@@ -8,7 +8,7 @@ local pcall = pcall
 local toJSON, fromJSON = textutils.serialiseJSON, textutils.unserialiseJSON
 local format = string.format
 
-local ok, value = pcall(fs.open, configPath, fs.exists(configPath) and "rw" or "w+")
+local ok, value = pcall(fs.open, configPath, fs.exists(configPath) and "rw" or "w")
 assert(ok, string.format("! couldn't access config file?\n%s", value))
 settings._handle = value
 

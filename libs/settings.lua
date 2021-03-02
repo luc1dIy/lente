@@ -8,20 +8,39 @@ local pcall = pcall
 local toJSON, fromJSON = textutils.serialiseJSON, textutils.unserialiseJSON
 local format = string.format
 
-local ok, value = pcall(fs.open, configPath, fs.exists(configPath) and "rw" or "w")
-assert(ok, string.format("! couldn't access config file?\n%s", value))
-settings._handle = value
+local open = fs.open
 
 function settings:save()
-    local ok, err = pcall(self._handle.write, self._handle, toJSON(self._values))
+    local ok, handle = pcall(open, configPath, "w")
+   
+    if not ok then
+        print(format("! couldn't access config file?\n%s", handle))
+        return
+    end
+
+    local ok, err = pcall(handle.write, handle, toJSON(self._values))
     
     if not ok then
         print(format("! failed to save config?\n%s", err))
+    else
+        handle:close()
     end
 end
 
 function settings:load()
-    local contents = self._handle:read()
+    local ok, handle = pcall(open, configPath, "r")
+    
+    if not ok then
+        print(format("! couldn't access config file?\n%s", handle))
+        return
+    end
+
+    local ok, contents = pcall(handle.read, handle)
+
+    if not ok then
+        print(format("! failed to read config?\n%s", contents))
+        return
+    end
 
     if not contents then
         print("! no config file found -- defaulting...")

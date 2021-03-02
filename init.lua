@@ -1,7 +1,7 @@
 local order = require("data/flags.lua").order
 
 local format = string.format
-local stageFormat = format("> stage %%i/%i: %%s", #LOAD_FIRST)
+local stageFormat = format("> stage %%i/%i: %%s", #order)
 
 print("$ loading...")
 local start = os.clock()

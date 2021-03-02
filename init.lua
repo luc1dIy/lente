@@ -24,18 +24,23 @@ end
 
 print(format("$ loaded fully in %fs", os.clock() - start))
 
+local input = require("libs/input")
 local loadedMods = require("libs/registry"):getMods()
-local modType, tick = require("libs/enums"), flags.tick
-local sleep = sleep
+local sleep, tick = sleep, flags.tick
 
-while true do
-    for i = 1, #loadedMods do
-        local mod = loadedMods[i]
+local function doTick()
+    while true do
+        for i = 1, #loadedMods do
+            local mod = loadedMods[i]
 
-        if mod:doesTick() then
-            mod:tick()
+            if mod:doesTick() then
+                mod:tick()
+            end
         end
-    end
 
-    sleep(tick)
+        sleep(tick)
+    end
 end
+
+coroutine.wrap(doTick)()
+input.listen()

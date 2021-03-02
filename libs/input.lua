@@ -21,5 +21,4 @@ function input.listen()
     end
 end
 
-coroutine.wrap(input.listen)()
 return input

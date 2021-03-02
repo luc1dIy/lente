@@ -57,11 +57,11 @@ function mod:run()
         return
     end
 
-    self._callback()
+    self._callback(self)
 end
 
 function mod:tick()
-    self._tickCallback()
+    self._tickCallback(self)
 end
 
 return mod

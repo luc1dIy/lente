@@ -27,9 +27,9 @@ local function clearLines()
     lines = { }
 end
 
-mod.new("tracers", "trace foes down!", modType.passive)
-    :setTickCallback(function() 
-        if not tracers:isEnabled() then
+mod.new("tracers", "trace foes down!", modType.passive, true)
+    :setTickCallback(function(self) 
+        if not self:isEnabled() then
             if trueLen(lines) ~= 0 then
                 clearLines()
             end

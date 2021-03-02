@@ -35,7 +35,7 @@ function settings:load()
         return
     end
 
-    local ok, contents = pcall(handle.read, handle)
+    local ok, contents = pcall(handle.readAll, handle)
 
     if not ok then
         print(format("! failed to read config?\n%s", contents))

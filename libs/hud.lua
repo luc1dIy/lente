@@ -1,10 +1,11 @@
 local hud = { }
-hud._handle = require("libs/perip").canvas
-hud._handle.clear()
+hud._handle = require("libs/perip").canvas()
 hud._canvas = hud._handle.create()
 hud._objects = { }
 hud._modMap = { }
 hud._current = nil
+
+hud._handle.clear()
 
 local registry = require("registry")
 local input = require("input")

@@ -8,6 +8,7 @@ local perips = require("libs/perip")
 local handle = perips.canvas3d()
 local canvas = handle.create()
 
+local setPosition = canvas.setPosition
 local addLine = canvas.addLine
 local sense = perips.sense
 
@@ -38,6 +39,7 @@ mod.new("tracers", "trace foes down!", modType.passive, true)
         end
 
         clearLines()
+        setPosition(relative)
         
         local nearby = sense()
 

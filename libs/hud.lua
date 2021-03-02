@@ -22,9 +22,11 @@ local trueLen = require("libs/utils").trueLen
 local select = select
 
 local cursor = hud._canvas.addRectangle(offset.x - 2, offset.y, 1, 5, cursorColour)
+-- ^ thiiis takes numbers to specify position...
 
 function hud:addMod(mod)
-    local text = self._canvas.addText(offset.x, (trueLen(self._objects) + 1) * offset.y, mod:getName(), textColour, size)
+    -- v this, however, takes a table...
+    local text = self._canvas.addText({ x = offset.x, y = (trueLen(self._objects) + 1) * offset.y }, mod:getName(), textColour, size)
     text.setShadow(true)
 
     self._objects[mod] = text

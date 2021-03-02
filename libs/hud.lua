@@ -1,25 +1,25 @@
 local hud = { }
-hud._handle = require("libs/perip.lua").canvas
+hud._handle = require("libs/perip").canvas
 hud._handle.clear()
 hud._canvas = hud._handle.create()
 hud._objects = { }
 hud._modMap = { }
 hud._current = nil
 
-local registry = require("registry.lua")
-local input = require("input.lua")
+local registry = require("registry")
+local input = require("input")
 
-local setting = require("classes/setting.lua")
+local setting = require("classes/setting")
 
-local theme = require("data/theme.lua")
+local theme = require("data/theme")
 local palette, offset, size = theme.palette, theme.offset, theme.size
 
 local textColour, enabledColour, cursorColour = palette.text, palette.enabled, palette.cursor
 
-local enums = require("data/enums.lua")
+local enums = require("data/enums")
 local modType = enums.modType
 
-local trueLen = require("utils.lua").trueLen
+local trueLen = require("utils").trueLen
 local select = select
 
 local cursor = hud._canvas.addRectangle({ x = offset.x - 2, y = offset.y }, 1, 5, cursorColour)

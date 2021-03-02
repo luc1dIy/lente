@@ -1,4 +1,4 @@
-local configPath = require("data/flags.lua").configPath
+local configPath = require("data/flags").configPath
 
 local settings = { }
 settings._registered = { }

@@ -13,5 +13,4 @@ for i = 1, #requirements do
     assert(hasModule(module), "! missing module: " .. module)
 end
 
-print("$ peripheral check complete.")
 return perip

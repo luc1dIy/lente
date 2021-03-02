@@ -9,7 +9,7 @@ local start = os.clock()
 for i = 1, #order do
     local module = order[i]
     print(format(stageFormat, i, module))
-    import(module)
+    require(module)
 end
 
 print(format("$ loaded in %fs", os.clock() - start))

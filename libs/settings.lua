@@ -1,7 +1,6 @@
 local configPath = require("data/flags").configPath
 
 local settings = { }
-settings._registered = { }
 settings._values = { }
 
 local pcall = pcall

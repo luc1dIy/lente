@@ -49,7 +49,7 @@ mod.new("tracers", "trace foes down!", modType.passive, true)
             return
         end
 
-        clearLines()
+        cleanLines()
         recenter(relative)
         
         local nearby = sense()

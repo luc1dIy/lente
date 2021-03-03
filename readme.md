@@ -2,9 +2,9 @@
 lente - lens/glasses, spring
 
 ### note
-***NO SUPPORT WILL BE PROVIDED.*** \
-***NO PRS WILL BE ACCEPTED.*** \
-the repo was originally intended to be private - i am not interested in critique or issues you may be having.
+the repo was originally intended to be private - i am not interested in critique or issues you may have.
+* ***NO SUPPORT WILL BE PROVIDED.***
+* ***NO PRS WILL BE ACCEPTED.***
 
 ### about
 this repo is a mess - the only reason why it is a) a repo and b) public is because computercraft lacks the utilities to properly interact with external tooling... i've been using gitget to transfer files (locally -> computer) hence the 500 commits to debug things as I find the in-game editor a pain.

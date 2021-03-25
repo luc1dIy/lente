@@ -4,7 +4,7 @@ local settings = { }
 settings._values = { }
 
 local pcall = pcall
-local toJSON, fromJSON = textutils.serialiseJSON, textutils.unserialiseJSON
+local encode, decode = textutils.serialise, textutils.unserialise
 local format = string.format
 
 local open = fs.open
@@ -17,7 +17,7 @@ function settings:save()
         return
     end
 
-    local ok, err = pcall(handle.write, toJSON(self._values))
+    local ok, err = pcall(handle.write, encode(self._values))
     handle.close()
 
     if not ok then
@@ -47,7 +47,7 @@ function settings:load()
         return
     end
 
-    local ok, parsed = pcall(fromJSON, contents)
+    local ok, parsed = pcall(decode, contents)
     
     if not ok or not parsed then
         print("! config file corrupted -- defaulting...")

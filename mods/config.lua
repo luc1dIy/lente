@@ -5,11 +5,11 @@ local modType = enums.modType
 
 local settings = require("libs/settings")
 
-mod.new("save_config", "save the current config!", modType.invoke)
+mod.new("saveConfig", "save the current config!", modType.invoke)
     :setCallback(function()
         settings:save()
     end)
-mod.new("load_config", "load config from file!", modType.invoke)
+mod.new("loadConfig", "load config from file!", modType.invoke)
     :setCallback(function()
         settings:load()
     end)

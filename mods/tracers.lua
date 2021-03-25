@@ -30,6 +30,8 @@ local function clearLines()
     lines = { }
 end
 
+-- what was I using this for again?
+--[[
 local function cleanLines(sensed)
     for entity, remove in pairs(lines) do
         if not sensed[entity] then
@@ -37,6 +39,7 @@ local function cleanLines(sensed)
         end
     end
 end
+--]]
 
 mod.new("tracers", "trace foes down!", modType.passive, true)
     :setTickCallback(function(self)
@@ -49,7 +52,7 @@ mod.new("tracers", "trace foes down!", modType.passive, true)
             return
         end
 
-        cleanLines()
+        clearLines()
         recenter(relative)
         
         local nearby = sense()

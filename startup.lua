@@ -25,7 +25,7 @@ local latest
 while not latest do
     local response, err = get(_uri)
 
-    if (response and response.getResponsecode() ~= 200) or err then
+    if (response and response.getResponseCode() ~= 200) or err then
         print("! failed to fetch latest version, trying again in " .. _settings.delay .. "t...")
     else
         local json = response.readAll()

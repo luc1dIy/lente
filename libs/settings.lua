@@ -17,12 +17,11 @@ function settings:save()
         return
     end
 
-    local ok, err = pcall(handle.write, handle, toJSON(self._values))
-    
+    local ok, err = pcall(handle.write, toJSON(self._values))
+    handle.close()
+
     if not ok then
         print(format("! failed to save config?\n%s", err))
-    else
-        handle:close()
     end
 end
 
@@ -40,7 +39,8 @@ function settings:load()
         return
     end
 
-    local ok, contents = pcall(handle.readAll, handle)
+    local ok, contents = pcall(handle.readAll)
+    handle.close()
 
     if not ok then
         print(format("! failed to read config?\n%s", contents))

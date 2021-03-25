@@ -68,8 +68,8 @@ function hud._runCursor()
     hud._modMap[hud._current]:run()
 end
 
-input:registerKey(setting.new("hud.scrollUp", keys.pageUp):getValue(), true, hud._scrollUp)
-input:registerKey(setting.new("hud.scrollDown", keys.pageDown):getValue(), true, hud._scrollDown)
-input:registerKey(setting.new("hud.runCursor", keys.grave):getValue(), true, hud._runCursor)
+input:registerKey(setting.new("hud.binds.scrollUp", keys.pageUp):getValue(), true, hud._scrollUp)
+input:registerKey(setting.new("hud.binds.scrollDown", keys.pageDown):getValue(), true, hud._scrollDown)
+input:registerKey(setting.new("hud.binds.runCursor", keys.grave):getValue(), true, hud._runCursor)
 
 return hud

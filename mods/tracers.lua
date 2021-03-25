@@ -41,7 +41,7 @@ end
 mod.new("tracers", "trace foes down!", modType.passive, true)
     :setTickCallback(function(self)
         local player = getMetaOwner()
-        if not self:isEnabled() or (player.motionX == 0 and (player.motionY == motionYStill or player.motionY == 0) and player.motionZ == 0) then
+        if not self:isEnabled() then
             if trueLen(lines) ~= 0 then
                 clearLines()
             end

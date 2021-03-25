@@ -26,10 +26,12 @@ print(format("$ loaded fully in %fs", os.clock() - start))
 
 local processInput = require("libs/input").processInput
 local loadedMods = require("libs/registry"):getMods()
-local sleep, tick = sleep, flags.tick
+local tick = flags.tick
 
-local waitForAll = parallel.waitForAll
+local startTimer = os.startTimer
 local pullEvent = os.pullEvent
+
+local timerId
 
 local function doTick()
     for i = 1, #loadedMods do
@@ -39,12 +41,18 @@ local function doTick()
             mod:tick()
         end
     end
+
+    timerId = startTimer(tick)
 end
 
-local function inputListener()
-    processInput(pullEvent("key"))
-end
-
+doTick()
 while true do
-    waitForAll(doTick, inputListener)
+    local data = { pullEvent() }
+    local event = data[1]
+
+    if event == "key" then
+        processInput(data)
+    elseif event == "timer" and data[2] == timerId then
+        doTick()
+    end
 end
